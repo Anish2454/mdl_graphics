@@ -46,11 +46,24 @@ def run(filename):
     if p:
         (commands, symbols) = p
 
+        print commands
+        print "***"
+        print symbols
+
         for command in commands:
-        
+
             line = command[0]
             args = [x for x in command[1:]]
-        
+
+            i = 0
+            while i < len(args):
+                if not args[i] == None and not args[i] in ['x', 'y', 'z']:
+                    try:
+                        float(args[i])
+                    except ValueError:
+                        del args[i]
+                i += 1
+
             if line == 'sphere':
                 #print 'SPHERE\t' + str(args)
                 add_sphere(polygons,
@@ -85,7 +98,7 @@ def run(filename):
                           float(args[0]), float(args[1]), float(args[2]),
                           float(args[3]), float(args[4]), float(args[5]) )
                 matrix_mult( stack[-1], edges )
-                draw_lines(eges, screen, zbuffer, color)
+                draw_lines(edges, screen, zbuffer, color)
                 edges = []
 
             elif line == 'scale':
