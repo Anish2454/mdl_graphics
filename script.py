@@ -57,7 +57,7 @@ def run(filename):
 
             i = 0
             while i < len(args):
-                if not args[i] == None and not args[i] in ['x', 'y', 'z']:
+                if not args[i] == None and not args[i] in ['x', 'y', 'z'] and not line == "save":
                     try:
                         float(args[i])
                     except ValueError:
